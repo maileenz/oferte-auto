@@ -1,13 +1,9 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import { CarCard } from "~/components/car-card";
-import { Hero } from "~/components/hero";
-
-import { api } from "~/utils/api";
+import type { Car } from "~/types";
 
 const Home: NextPage = () => {
-
   return (
     <>
       <Head>
@@ -25,9 +21,10 @@ const Home: NextPage = () => {
 
 export default Home;
 
-const products = [
+const products: Car[] = [
   {
-    id: 3,
+    id: "123",
+    makeId: "123",
     make: "Mercedes",
     model: "CLK63",
     image:
@@ -40,5 +37,8 @@ const products = [
     fuel: "diesel",
     transmission: "manual",
     price: 17999,
+    media: [],
+    updatedAt: new Date(),
+    createdAt: new Date(),
   },
 ];
