@@ -1,5 +1,4 @@
-import { FC } from "react";
-import { CarCard } from "../car-card";
+import type { FC } from "react";
 
 export const Hero: FC = () => {
   return (
@@ -12,7 +11,7 @@ export const Hero: FC = () => {
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center">
         <div className="max-w-md">
-          <div className="card card-compact w-96 bg-white p-4 shadow-lg">
+          <div className="card-compact card w-96 bg-white p-4 shadow-lg">
             <button className="btn-block btn">Show results</button>
           </div>
         </div>

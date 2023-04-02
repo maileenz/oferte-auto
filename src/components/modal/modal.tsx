@@ -1,4 +1,4 @@
-import { FCC } from "~/types";
+import type { FCC } from "~/types";
 
 export interface ModalProps {
   id: string;

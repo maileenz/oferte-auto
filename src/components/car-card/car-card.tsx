@@ -1,9 +1,8 @@
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 import {
   BsImage,
   BsSpeedometer2,
   BsFuelPump,
-  BsCalendar,
   BsCalendar2Date,
 } from "react-icons/bs";
 import { TbEngine } from "react-icons/tb";
@@ -11,6 +10,7 @@ import { GiGearStickPattern, GiPriceTag, GiShare } from "react-icons/gi";
 import FsLightbox from "fslightbox-react";
 import { motion, Variants } from "framer-motion";
 import { FacebookShareButton } from "react-share";
+import Image from "next/image";
 
 export interface CarCardProps {
   [x: string]: any;
@@ -55,7 +55,7 @@ export const CarCard: FC<CarCardProps> = (props) => {
           className="relative cursor-pointer"
           onClick={() => setToggler(!toggler)}
         >
-          <img
+          <Image
             src={image}
             alt={`${make} ${model}`}
             className="h-full w-auto"
@@ -104,20 +104,20 @@ export const CarCard: FC<CarCardProps> = (props) => {
             </li>
           </ul>
           <div className="mt-2">
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">ABS</div>
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">ABS</div>
 
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">A/C</div>
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">A/C</div>
 
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
               Incalzire scaune
             </div>
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
               Incalzire volan
             </div>
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
               Sistem audio 7.1
             </div>
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
               Navigation
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { TiPhone } from "react-icons/ti";
 import { env } from "~/env.mjs";
 
