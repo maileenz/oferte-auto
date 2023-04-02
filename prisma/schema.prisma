@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model Product {
+    id           String           @id @default(cuid())
+    description  String
+    model        String
+    year         Int
+    engineSize   Int
+    mileage      Int
+    fuel         FuelType
+    transmission TransmissionType
+    price        Int
+    media        Json
+    createdAt    DateTime         @default(now())
+    updatedAt    DateTime         @updatedAt
+
+    options Option[]
+
+    make   Make   @relation(fields: [makeId], references: [id])
+    makeId String
+
+    @@map("products")
+}
+
+enum FuelType {
+    diesel
+    petrol
+}
+
+enum TransmissionType {
+    automatic
+    manual
+}
+
+model Option {
+    id          String   @id @default(cuid())
+    name        String
+    description String
+    createdAt   DateTime @default(now())
+
+    products Product[]
+
+    @@map("options")
+}
+
+model Make {
+    id        String   @id @default(cuid())
+    name      String
+    createdAt DateTime @default(now())
+
+    products Product[]
+
+    @@map("make")
+}
