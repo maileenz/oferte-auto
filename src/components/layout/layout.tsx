@@ -3,7 +3,7 @@ import { BsSearch } from "react-icons/bs";
 import { MessengerChat } from "react-messenger-chat-plugin";
 import { PulseLoader } from "react-spinners";
 import { env } from "~/env.mjs";
-import type { FCC } from "~/types";
+import { FCC } from "~/types";
 
 export const Layout: FCC = (props) => {
   const { children } = props;

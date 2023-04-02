@@ -56,7 +56,7 @@ export const CarCard: FC<CarCardProps> = (props) => {
           className="relative cursor-pointer"
           onClick={() => setToggler(!toggler)}
         >
-          <Image
+          <img
             src={image}
             alt={`${make} ${model}`}
             className="h-full w-auto"
