@@ -104,20 +104,20 @@ export const CarCard: FC<CarCardProps> = (props) => {
             </li>
           </ul>
           <div className="mt-2">
-            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">ABS</div>
+            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">ABS</div>
 
-            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">A/C</div>
+            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">A/C</div>
 
-            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
+            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
               Incalzire scaune
             </div>
-            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
+            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
               Incalzire volan
             </div>
-            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
+            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
               Sistem audio 7.1
             </div>
-            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
+            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
               Navigation
             </div>
           </div>
