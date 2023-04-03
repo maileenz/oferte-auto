@@ -10,7 +10,6 @@ import { GiGearStickPattern, GiPriceTag, GiShare } from "react-icons/gi";
 import FsLightbox from "fslightbox-react";
 import { motion, type Variants } from "framer-motion";
 import { FacebookShareButton } from "react-share";
-import Image from "next/image";
 import type { Car } from "~/types";
 
 export interface CarCardProps {
@@ -30,7 +29,7 @@ export const CarCard: FC<CarCardProps> = (props) => {
       fuel,
       transmission,
       price,
-      image,
+      media,
     },
   } = props;
 
@@ -57,20 +56,20 @@ export const CarCard: FC<CarCardProps> = (props) => {
           onClick={() => setToggler(!toggler)}
         >
           <img
-            src={image}
+            src={media[0]?.url}
             alt={`${make} ${model}`}
             className="h-full w-auto"
             draggable={"false"}
           />
           <div className="absolute right-4 top-3 flex items-center gap-2 rounded-lg bg-white px-3 py-2">
-            12
+            {media.length}
             <BsImage />
           </div>
         </figure>
         <div className="card-body">
-          <h2 className="card-title">
+          <h3 className="card-title">
             {make} {model} <div className="badge px-1">NEW</div>
-          </h2>
+          </h3>
           <p className="mb-2">{description}</p>
           <ul className="rounded-box menu-horizontal w-full items-center justify-around bg-base-100">
             <li>
@@ -105,20 +104,20 @@ export const CarCard: FC<CarCardProps> = (props) => {
             </li>
           </ul>
           <div className="mt-2">
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">ABS</div>
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">ABS</div>
 
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">A/C</div>
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">A/C</div>
 
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
               Incalzire scaune
             </div>
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
               Incalzire volan
             </div>
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
               Sistem audio 7.1
             </div>
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
               Navigation
             </div>
           </div>
@@ -140,14 +139,7 @@ export const CarCard: FC<CarCardProps> = (props) => {
         </div>
       </motion.div>
 
-      <FsLightbox
-        toggler={toggler}
-        sources={[
-          "https://i.imgur.com/fsyrScY.jpg",
-          "https://www.youtube.com/watch?v=3nQNiWdeH2Q",
-          "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-        ]}
-      />
+      <FsLightbox toggler={toggler} sources={media.map((item) => item.url)} />
     </>
   );
 };

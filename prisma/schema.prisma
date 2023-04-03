@@ -20,14 +20,14 @@ model Product {
     fuel         FuelType
     transmission TransmissionType
     price        Int
-    media        Json
     createdAt    DateTime         @default(now())
     updatedAt    DateTime         @updatedAt
 
     options Option[]
 
-    make   Make   @relation(fields: [makeId], references: [id])
+    make   Make    @relation(fields: [makeId], references: [id])
     makeId String
+    media  Media[]
 
     @@map("products")
 }
@@ -55,10 +55,29 @@ model Option {
 
 model Make {
     id        String   @id @default(cuid())
-    name      String
+    name      String   @unique
     createdAt DateTime @default(now())
 
     products Product[]
 
     @@map("make")
+}
+
+model Media {
+    id        String    @id @default(cuid())
+    url       String
+    hash      String
+    type      MediaType
+    preview   Boolean   @default(false)
+    createdAt DateTime  @default(now())
+
+    product   Product @relation(fields: [productId], references: [id])
+    productId String
+
+    @@map("media")
+}
+
+enum MediaType {
+    photo
+    video
 }

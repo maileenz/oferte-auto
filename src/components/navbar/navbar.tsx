@@ -1,10 +1,16 @@
+import { motion } from "framer-motion";
 import type { FC } from "react";
+import { GiCarWheel } from "react-icons/gi";
 import { TiPhone } from "react-icons/ti";
 import { env } from "~/env.mjs";
 
 export const Navbar: FC = () => {
   return (
-    <div className="navbar sticky top-0 z-10 bg-white shadow">
+    <motion.div
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="navbar sticky top-0 z-10 bg-white shadow"
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn-ghost btn-circle btn">
@@ -40,7 +46,10 @@ export const Navbar: FC = () => {
         </div>
       </div>
       <div className="navbar-center">
-        <a className="text-xl font-semibold normal-case">OferteAutoConstanta</a>
+        <a className="flex items-center text-xl font-semibold normal-case">
+          <GiCarWheel className="h-5 w-5" />
+          ferteAutoConstanta
+        </a>
       </div>
       <div className="navbar-end">
         <a
@@ -50,6 +59,6 @@ export const Navbar: FC = () => {
           <TiPhone className="h-6 w-6" />
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 };
