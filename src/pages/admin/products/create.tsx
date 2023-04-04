@@ -26,7 +26,7 @@ const Create: NextPage = () => {
   const create = api.products.create.useMutation({
     onSuccess() {
       toast.success("Successfully added!");
-      router.push("/admin/products");
+      void router.push("/admin/products");
     },
   });
 
