@@ -6,20 +6,32 @@ generator client {
 }
 
 datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL")
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
+}
+
+model User {
+    id        String   @id @default(cuid())
+    email     String   @unique()
+    hash      String
+    createdAt DateTime @default(now())
+
+    products Product[]
+
+    @@map("users")
 }
 
 model Product {
     id           String           @id @default(cuid())
     description  String
     model        String
-    year         Int
-    engineSize   Int
-    mileage      Int
+    year         String
+    engineSize   String
+    mileage      String
     fuel         FuelType
     transmission TransmissionType
-    price        Int
+    price        String
     createdAt    DateTime         @default(now())
     updatedAt    DateTime         @updatedAt
 
@@ -28,7 +40,10 @@ model Product {
     make   Make    @relation(fields: [makeId], references: [id])
     makeId String
     media  Media[]
+    user   User    @relation(fields: [userId], references: [id])
+    userId String
 
+    @@index([userId, makeId])
     @@map("products")
 }
 
@@ -66,7 +81,7 @@ model Make {
 model Media {
     id        String    @id @default(cuid())
     url       String
-    hash      String
+    hash      String?
     type      MediaType
     preview   Boolean   @default(false)
     createdAt DateTime  @default(now())
@@ -74,6 +89,7 @@ model Media {
     product   Product @relation(fields: [productId], references: [id])
     productId String
 
+    @@index([productId])
     @@map("media")
 }
 

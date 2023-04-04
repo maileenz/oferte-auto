@@ -5,10 +5,10 @@ import { CarCard } from "~/components/car-card";
 import { SearchInput } from "~/components/search-input";
 import { env } from "~/env.mjs";
 import { prisma } from "~/server/db";
-import { api } from "~/utils/api";
+//import { api } from "~/utils/api";
 
 const Home: NextPage<Props> = ({ products }) => {
-  const { data } = api.products.getAll.useQuery();
+  //const { data } = api.products.getAll.useQuery();
 
   return (
     <>

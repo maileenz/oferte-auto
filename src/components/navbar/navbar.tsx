@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Link from "next/link";
 import type { FC } from "react";
 import { GiCarWheel } from "react-icons/gi";
 import { TiPhone } from "react-icons/ti";
@@ -46,10 +47,13 @@ export const Navbar: FC = () => {
         </div>
       </div>
       <div className="navbar-center">
-        <a className="flex items-center text-xl font-semibold normal-case">
-          <GiCarWheel className="h-5 w-5" />
-          ferteAutoConstanta
-        </a>
+        <Link
+          href="/"
+          className="flex items-center text-xl font-semibold normal-case"
+        >
+          <GiCarWheel className="h-6 w-6" />
+          ferteAuto.ro
+        </Link>
       </div>
       <div className="navbar-end">
         <a

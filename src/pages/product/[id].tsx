@@ -76,6 +76,6 @@ export const getServerSideProps = async ({
   return { props: { product } };
 };
 
-type Props = inferAsyncReturnType<typeof getServerSideProps>["props"];
+export type Props = inferAsyncReturnType<typeof getServerSideProps>["props"];
 
 export default Car;

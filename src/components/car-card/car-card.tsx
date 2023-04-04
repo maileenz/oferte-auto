@@ -39,9 +39,11 @@ export const CarCard: FC<CarCardProps> = (props) => {
     style: "currency",
     currency: "EUR",
     maximumFractionDigits: 0,
-  }).format(price);
+  }).format(Number(price));
 
-  const formatMileage = new Intl.NumberFormat("en-DE", {}).format(mileage);
+  const formatMileage = new Intl.NumberFormat("en-DE", {}).format(
+    Number(mileage)
+  );
 
   return (
     <>
@@ -49,16 +51,16 @@ export const CarCard: FC<CarCardProps> = (props) => {
         initial={"hide"}
         animate={"show"}
         variants={variants}
-        className="card-compact card bg-white shadow"
+        className="card card-compact bg-white shadow"
       >
         <figure
-          className="relative cursor-pointer"
+          className="relative max-h-[400px] cursor-pointer"
           onClick={() => setToggler(!toggler)}
         >
           <img
             src={media[0]?.url}
             alt={`${make} ${model}`}
-            className="h-full w-auto"
+            className="h-full w-full object-cover"
             draggable={"false"}
           />
           <div className="absolute right-4 top-3 flex items-center gap-2 rounded-lg bg-white px-3 py-2">
@@ -87,7 +89,7 @@ export const CarCard: FC<CarCardProps> = (props) => {
             <li>
               <div className="flex flex-col items-center gap-2 px-2 py-3 md:flex-row">
                 <TbEngine className="h-6 w-6" />
-                {engineSize.toFixed(1)} L
+                {Number(engineSize).toFixed(1)} L
               </div>
             </li>
             <li>
@@ -104,20 +106,20 @@ export const CarCard: FC<CarCardProps> = (props) => {
             </li>
           </ul>
           <div className="mt-2">
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">ABS</div>
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">ABS</div>
 
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">A/C</div>
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">A/C</div>
 
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
               Incalzire scaune
             </div>
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
               Incalzire volan
             </div>
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
               Sistem audio 7.1
             </div>
-            <div className="badge badge-ghost mb-1 mr-1 bg-base-100">
+            <div className="badge-ghost badge mb-1 mr-1 bg-base-100">
               Navigation
             </div>
           </div>

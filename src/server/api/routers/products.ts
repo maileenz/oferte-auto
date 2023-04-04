@@ -1,7 +1,11 @@
 import { FuelType, MediaType, TransmissionType } from "@prisma/client";
 import { z } from "zod";
 
-import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "~/server/api/trpc";
 
 export const productsRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx: { prisma } }) => {
@@ -92,22 +96,22 @@ export const productsRouter = createTRPCRouter({
       };
     }),
 
-  create: publicProcedure
+  create: protectedProcedure
     .input(
       z.object({
         description: z.string(),
         make: z.string(),
         model: z.string(),
-        year: z.number(),
-        engineSize: z.number(),
-        mileage: z.number(),
+        year: z.string(),
+        engineSize: z.string(),
+        mileage: z.string(),
         fuel: z.nativeEnum(FuelType),
         transmission: z.nativeEnum(TransmissionType),
-        price: z.number(),
+        price: z.string(),
         media: z.array(
           z.object({
             url: z.string(),
-            hash: z.string(),
+            hash: z.string().nullable(),
             type: z.nativeEnum(MediaType),
           })
         ),
@@ -127,7 +131,7 @@ export const productsRouter = createTRPCRouter({
           price,
           media,
         },
-        ctx: { prisma },
+        ctx: { prisma, authId },
       }) => {
         await prisma.product.create({
           data: {
@@ -139,6 +143,11 @@ export const productsRouter = createTRPCRouter({
             fuel,
             transmission,
             price,
+            user: {
+              connect: {
+                id: authId,
+              },
+            },
             media: {
               createMany: {
                 data: media,

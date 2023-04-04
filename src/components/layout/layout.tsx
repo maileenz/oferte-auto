@@ -1,5 +1,7 @@
 import { MessengerChat } from "react-messenger-chat-plugin";
 import { env } from "~/env.mjs";
+import { Toaster } from "react-hot-toast";
+import { Navbar } from "../navbar";
 import type { FCC } from "~/types";
 
 export const Layout: FCC = (props) => {
@@ -7,6 +9,8 @@ export const Layout: FCC = (props) => {
 
   return (
     <>
+      <Toaster position="bottom-center" />
+      <Navbar />
       <main className="flex justify-center">
         <div className="flex w-full max-w-2xl flex-col gap-4 px-2 py-4 md:gap-6 md:py-6">
           {children}
