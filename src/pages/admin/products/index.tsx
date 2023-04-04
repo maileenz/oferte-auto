@@ -14,7 +14,7 @@ const Products: NextPage = () => {
 
   const remove = api.products.remove.useMutation({
     onSuccess() {
-      util.products.getAll.invalidate();
+      void util.products.getAll.invalidate();
       void Swal.fire("Deleted!", "The product has been deleted.", "success");
     },
   });
@@ -52,7 +52,7 @@ const Products: NextPage = () => {
             </thead>
             <tbody>
               {data?.products.map(({ id, make, model, year }) => (
-                <tr>
+                <tr key={id}>
                   <td>
                     <button className="btn-ghost btn-square btn-sm btn">
                       <BsEye className="h-6 w-6" />
