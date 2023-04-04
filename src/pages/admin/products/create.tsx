@@ -26,7 +26,7 @@ const Create: NextPage = () => {
   const create = api.products.create.useMutation({
     onSuccess() {
       toast.success("Successfully added!");
-      void router.push("/admin/products");
+      router.push("/admin/products");
     },
   });
 
@@ -102,7 +102,7 @@ const Create: NextPage = () => {
 
       <form
         className="card flex flex-col gap-3 bg-white shadow-sm"
-        onSubmit={void handleSubmit(submitForm)}
+        onSubmit={handleSubmit(submitForm)}
       >
         <div className="card-body pt-4">
           <button className="btn-red btn" type="submit">

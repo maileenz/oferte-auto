@@ -42,7 +42,7 @@ const Admin: NextPage = () => {
       </Head>
 
       <div className="card bg-white">
-        <form className="card-body" onSubmit={void handleSubmit(submitForm)}>
+        <form className="card-body" onSubmit={handleSubmit(submitForm)}>
           <h2 className="card-title">Log in</h2>
           <input
             type="email"
