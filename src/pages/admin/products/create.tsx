@@ -231,7 +231,7 @@ const Create: NextPage = () => {
           <input
             type="file"
             className="file-input-bordered file-input w-full"
-            onChange={void handleFileUpload}
+            onChange={handleFileUpload}
             multiple
           />
 

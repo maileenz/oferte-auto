@@ -1,12 +1,24 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { BsChevronLeft, BsPlus } from "react-icons/bs";
-import { Table } from "~/components/table";
+import { BsChevronLeft, BsEye, BsPen, BsPlus, BsTrash } from "react-icons/bs";
+import Swal from "sweetalert2";
 import { env } from "~/env.mjs";
 import { withSessionSsr } from "~/server/session";
+import { api } from "~/utils/api";
 
 const Products: NextPage = () => {
+  const { data } = api.products.getAll.useQuery();
+
+  const util = api.useContext();
+
+  const remove = api.products.remove.useMutation({
+    onSuccess() {
+      util.products.getAll.invalidate();
+      void Swal.fire("Deleted!", "The product has been deleted.", "success");
+    },
+  });
+
   return (
     <>
       <Head>
@@ -29,7 +41,64 @@ const Products: NextPage = () => {
           </div>
         </div>
 
-        <Table></Table>
+        <div className="w-full overflow-x-auto">
+          <table className="table w-full">
+            <thead>
+              <tr>
+                <th>Media</th>
+                <th className="w-full">Product</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {data?.products.map(({ id, make, model, year }) => (
+                <tr>
+                  <td>
+                    <button className="btn-ghost btn-square btn-sm btn">
+                      <BsEye className="h-6 w-6" />
+                    </button>
+                  </td>
+                  <td className="w-full">
+                    <div className="font-bold">{make}</div>
+                    <div className="text-sm opacity-50">
+                      {model} ({year})
+                    </div>
+                  </td>
+                  <th>
+                    <button className="btn-ghost btn-square btn-sm btn mr-2">
+                      <BsPen className="h-6 w-6" />
+                    </button>
+                    <button
+                      className="btn-ghost btn-square btn-sm btn hover:text-red-600"
+                      onClick={() => {
+                        void Swal.fire({
+                          title: "Are you sure?",
+                          text: "You won't be able to revert this!",
+                          icon: "warning",
+                          showCancelButton: true,
+                          confirmButtonColor: "#3085d6",
+                          cancelButtonColor: "#d33",
+                          confirmButtonText: "Yes, delete it!",
+                        }).then((result) => {
+                          if (result.isConfirmed) remove.mutate(id);
+                        });
+                      }}
+                    >
+                      <BsTrash className="h-6 w-6" />
+                    </button>
+                  </th>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>Media</th>
+                <th className="w-full">Product</th>
+                <th></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
     </>
   );

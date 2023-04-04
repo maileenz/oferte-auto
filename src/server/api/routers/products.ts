@@ -95,7 +95,6 @@ export const productsRouter = createTRPCRouter({
         product,
       };
     }),
-
   create: protectedProcedure
     .input(
       z.object({
@@ -167,4 +166,13 @@ export const productsRouter = createTRPCRouter({
         });
       }
     ),
+  remove: protectedProcedure
+    .input(z.string())
+    .mutation(async ({ input, ctx: { prisma } }) => {
+      await prisma.product.delete({
+        where: {
+          id: input,
+        },
+      });
+    }),
 });

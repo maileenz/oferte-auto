@@ -37,10 +37,10 @@ model Product {
 
     options Option[]
 
-    make   Make    @relation(fields: [makeId], references: [id])
+    make   Make    @relation(fields: [makeId], references: [id], onDelete: Cascade)
     makeId String
     media  Media[]
-    user   User    @relation(fields: [userId], references: [id])
+    user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
     userId String
 
     @@index([userId, makeId])
@@ -86,7 +86,7 @@ model Media {
     preview   Boolean   @default(false)
     createdAt DateTime  @default(now())
 
-    product   Product @relation(fields: [productId], references: [id])
+    product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
     productId String
 
     @@index([productId])

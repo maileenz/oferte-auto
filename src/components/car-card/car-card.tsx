@@ -11,6 +11,7 @@ import FsLightbox from "fslightbox-react";
 import { motion, type Variants } from "framer-motion";
 import { FacebookShareButton } from "react-share";
 import type { Car } from "~/types";
+import { env } from "~/env.mjs";
 
 export interface CarCardProps {
   value: Car;
@@ -129,7 +130,7 @@ export const CarCard: FC<CarCardProps> = (props) => {
               <GiPriceTag className="h-5 w-5" />
             </div>
             <FacebookShareButton
-              url={`http://localhost:3000/product/${id}`}
+              url={`${env.NEXT_PUBLIC_SITE_URL}/product/${id}`}
               resetButtonStyle={true}
             >
               <div className="px-[4rem !important] btn-ghost btn gap-2">
